@@ -69,7 +69,7 @@ export const StyledJumbo = styled.div`
   margin-bottom: 5rem;
   overflow: hidden;
   position: relative;
-  
+
   div{
     padding: 1rem;
     width: 35vw;
@@ -122,7 +122,6 @@ export const StyledJumbo = styled.div`
     background-color: ${colors.darkBlue};
     z-index: -1;
     position: absolute;
-    transform: rotate(-19deg);
     border-radius: 35%;
     top: -25%;
     width: 120%;
@@ -322,7 +321,7 @@ export const MenuItem = styled.li`
     border-right: ${({ margin }) => (margin ? "1px solid white" : "")};
     padding: ${({ margin }) => (margin ? "0 26px 0 26px" : "0 0 0 26px")};
     & img{
-      margin-right: 5px; 
+      margin-right: 5px;
       width: 0.7rem;
     }
   `}
@@ -451,6 +450,9 @@ export const Purchase = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  a{
+    margin: 5px 0;
+  }
   h2 {
     font-size: 2.2rem;
   }
