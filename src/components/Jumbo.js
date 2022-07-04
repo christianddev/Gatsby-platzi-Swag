@@ -1,12 +1,12 @@
 import React from 'react'
 import {StyledJumbo} from '../styles/components'
 
-const Jumbo = () => {
+const Jumbo = ({description}) => {
   return (
     <StyledJumbo>
       <div>
         <h2>Get the best Swag</h2>
-        <small>Elegant designs</small>
+        <small>{description}</small>
       </div>
     </StyledJumbo>
   )
