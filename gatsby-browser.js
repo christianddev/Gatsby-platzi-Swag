@@ -5,7 +5,13 @@
  */
 
 // You can delete this file if you're not using it
-import React from 'react'
-import Layout from './src/components/Layout'
+import React from "react"
+import Layout from "./src/components/Layout"
+import { GlobalStyles } from "./src/styles"
 
-export const wrapRootElement = ({ element }) => <Layout>{element}</Layout>
+export const wrapRootElement = ({ element }) => (
+  <>
+    <GlobalStyles />
+    <Layout>{element}</Layout>
+  </>
+)
