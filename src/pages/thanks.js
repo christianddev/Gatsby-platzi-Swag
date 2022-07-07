@@ -1,12 +1,12 @@
 import { Link } from 'gatsby'
 import React from 'react'
-import { SEO } from '../components'
+import { Seo } from '../components'
 import { Button, Purchase } from '../styles/components'
 
 const Thanks = () => {
   return (
     <div>
-      <SEO title='Successful purchase'  />
+      <Seo title='Successful purchase'  />
       <Purchase>
         <h2>Successful purchase</h2>
         <p>hope you enjoy your purchase, use in moderation.</p>
