@@ -40,10 +40,10 @@ module.exports = {
     {
       resolve: `gatsby-source-stripe`,
       options: {
-        objects: ["Price"],
-        secretKey: "pk_test_51LIPdEKeAtHEO6CnptYztCCjqJqzVPHSuG8hUoAmFpqb57bqG0asdF6FCDSS6H0z6wQ0Kk9WX6uT83XoyPH3JUaq00LXwNtQ8m",
-        downloadFiles: true,
-      },
+      objects: [`Price`],
+      secretKey: process.env.GATSBY_STRIPE_SECRET_KEY,
+      downloadFiles: false,
+      }
     },
   ],
 }
