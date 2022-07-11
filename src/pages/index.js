@@ -1,14 +1,17 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 
-import { Jumbo, SEO } from "../components"
+import { Link } from "gatsby"
+import styled from "styled-components"
+import Seo from "../components/seo"
+import Jumbo from "../components/jumbo"
 
-export const query= graphql`
+export const query = graphql`
   query GET_DESCRIPTION {
-    allSite{
-      edges{
-        node{
-          siteMetadata{
+    allSite {
+      edges {
+        node {
+          siteMetadata {
             description
           }
         }
@@ -17,19 +20,28 @@ export const query= graphql`
   }
 `
 
+const Button = styled.button`
+  width: 8rem;
+  background-color: #98ca2f;
+  border: none;
+  border-radius: 10px;
+  color: ${props => props.color};
+  &:hover {
+    transform: scale(1.1);
+  }
+`
 
-const IndexPage = ({data}) => (
+const index = ({ data }) => (
   <>
-    <SEO title="Home" />
-    <Jumbo description={ data?.allSite?.edges[0]?.node?.siteMetadata?.description}/>
-    <h1>Hi people</h1>
-    <p>{data?.allSite?.edges?.node?.siteMetadata}</p>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
+    <Seo title="Home" />
+    <Jumbo
+      description={data?.allSite?.edges[0]?.node?.siteMetadata?.description}
+    />
+    <Button color="gray">Buy</Button>
     <Link to="/page-2/">Go to page 2</Link>
     <Link to="/thanks/">Go to Thanks</Link>
     <Link to="/cancelled/">Go to Cancelled</Link>
   </>
 )
 
-export default IndexPage
+export default index
