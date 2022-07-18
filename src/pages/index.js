@@ -2,12 +2,10 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import { Link } from "gatsby"
-import styled from "styled-components"
-import Seo from "../components/seo"
-import Jumbo from "../components/jumbo"
+import {Jumbo, Products, Seo} from "../components"
 
 export const query = graphql`
-  query GET_DESCRIPTION {
+  query GET_DATA {
     allSite {
       edges {
         node {
@@ -17,31 +15,39 @@ export const query = graphql`
         }
       }
     }
+    allStripePrice {
+      edges {
+        node {
+          id
+          unit_amount
+          product {
+            name
+            metadata {
+              description
+              img
+              wear
+            }
+          }
+        }
+      }
+    }
   }
 `
 
-const Button = styled.button`
-  width: 8rem;
-  background-color: #98ca2f;
-  border: none;
-  border-radius: 10px;
-  color: ${props => props.color};
-  &:hover {
-    transform: scale(1.1);
-  }
-`
-
-const index = ({ data }) => (
-  <>
-    <Seo title="Home" />
-    <Jumbo
-      description={data?.allSite?.edges[0]?.node?.siteMetadata?.description}
-    />
-    <Button color="gray">Buy</Button>
-    <Link to="/page-2/">Go to page 2</Link>
-    <Link to="/thanks/">Go to Thanks</Link>
-    <Link to="/cancelled/">Go to Cancelled</Link>
-  </>
-)
+const index = ({ data }) => {
+  console.log('data', data)
+  return (
+    <>
+      <Seo title="Home" />
+      <Jumbo
+        description={data?.allSite?.edges[0]?.node?.siteMetadata?.description}
+      />
+      <Products products={data?.allStripePrice?.edges} />
+      <Link to="/page-2/">Go to page 2</Link>
+      <Link to="/thanks/">Go to Thanks</Link>
+      <Link to="/cancelled/">Go to Cancelled</Link>
+    </>
+  )
+}
 
 export default index

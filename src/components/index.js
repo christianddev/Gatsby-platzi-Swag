@@ -1,0 +1,5 @@
+export { default  as Header } from "./header"
+export { default  as Jumbo } from "./jumbo"
+export { default  as Products } from "./products"
+export { default  as Seo } from "./seo"
+export { default  as ProductDetail } from "./productDetail"

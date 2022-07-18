@@ -22,7 +22,7 @@ export const StyledHeader = styled.header`
   width: 100%;
   max-width: 960;
   display: flex;
-  position: fixed;
+  position: relative;
   z-index: 3;
   align-items: center;
   justify-content: space-between;
