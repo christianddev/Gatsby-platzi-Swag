@@ -1,41 +1,49 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import priceFormat from "../utils/priceFormat"
 import {
   Tag,
   SizeButton,
   QtyButton,
   SizeSelect,
-  Button,
   QtySelect,
   StyledProductDetail,
+  Button,
 } from "../styles/components"
-import Seo from "./seo"
+import {Seo, Stars} from "./"
 
-export const ProductDetail = data => {
-  const price = priceFormat(data?.price)
+export const ProductDetail = ({ unit_amount, product: { name, metadata } }) => {
+  const price = priceFormat(unit_amount ?? 0)
   const [size, setSize] = useState(2)
   const [qty, setQty] = useState(1)
-  console.log("data", data)
   return (
     <StyledProductDetail>
-      <Seo title={data?.product?.name} />
-      <img src={data?.product?.metadata?.img} alt={data?.product?.name} />
+      <Seo title={name} />
+      <img src={metadata?.img} alt={name} />
       <div>
         <Tag>Popular</Tag>
-        <h2>{data?.product?.name}</h2>
+        <h2>{name}</h2>
         <b>USD {price}</b>
-        {data?.product?.metadata?.wear && <SizeSelect selected={size}>
-          <SizeButton onClick={ () => setSize(1)}>XS</SizeButton>
-          <SizeButton onClick={ () => setSize(2)}>S</SizeButton>
-          <SizeButton onClick={ () => setSize(3)}>M</SizeButton>
-          <SizeButton onClick={ () => setSize(4)}>L</SizeButton>
-          </SizeSelect>}
-          <p>Qty: </p>
-          <QtySelect selected={qty}>
-            <Button onClick={ () => qty > 1?  setQty(-1) : null}>-</Button>
-            <input type="text" value={qty} disable />
-            <Button onClick={ () => setQty(+1)}>+</Button>
-            </QtySelect>
+        <Stars />
+
+        {metadata?.wear === "true" && (
+          <>
+          <p>Color: {metadata?.color} </p>
+          <small>{metadata?.description}</small>
+          <SizeSelect selected={size}>
+            <SizeButton onClick={() => setSize(1)}>XS</SizeButton>
+            <SizeButton onClick={() => setSize(2)}>S</SizeButton>
+            <SizeButton onClick={() => setSize(3)}>M</SizeButton>
+            <SizeButton onClick={() => setSize(4)}>L</SizeButton>
+          </SizeSelect>
+          </>
+        )}
+        <p>Qty: </p>
+        <QtySelect selected={qty}>
+          <QtyButton onClick={() => (qty > 1 ? setQty((q) => q-1) : null)}>-</QtyButton>
+          <input type="text" value={qty} disabled />
+          <QtyButton onClick={() => setQty((q) => q+1)}>+</QtyButton>
+        </QtySelect>
+        <Button> Add to Cart</Button>
       </div>
     </StyledProductDetail>
   )

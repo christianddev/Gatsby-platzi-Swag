@@ -16,6 +16,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 description
                 img
                 wear
+                color
               }
             }
           }
@@ -23,6 +24,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
+
   if (result?.errors) {
     throw result.errors
   }
@@ -31,6 +33,7 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `${node.id}`,
       component: productTemplate,
+      context: node
     })
   })
 }

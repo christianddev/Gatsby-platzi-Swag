@@ -4,7 +4,6 @@ import priceFormat from "../utils/priceFormat"
 import { StyledProducts } from "../styles/components"
 
 const Products = ({ products }) => {
-  console.log('products', products)
 
   if (!products) {
     <p>Without products</p>
