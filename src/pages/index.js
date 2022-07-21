@@ -34,7 +34,6 @@ export const query = graphql`
 `
 
 const index = ({ data }) => {
-  console.log('data', data)
   return (
     <>
       <Seo title="Home" />

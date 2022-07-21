@@ -32,7 +32,6 @@
     }
   }
 
-  console.log('data', data)
    const metaDescription = description || site?.siteMetadata.description
 
    return (
