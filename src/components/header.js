@@ -5,8 +5,8 @@ import { MenuItem, StyledHeader } from "../styles/components"
 import { CartContext } from "../context"
 
 const Header = () => {
-  const {cart} = useContext(CartContext)
-  console.log('cart', cart)
+  const { cart } = useContext(CartContext)
+
   return (
     <StyledHeader>
       <Link to="/">

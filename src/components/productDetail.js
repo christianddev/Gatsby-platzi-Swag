@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import priceFormat from "../utils/priceFormat"
 import {
   Tag,
@@ -10,11 +10,18 @@ import {
   Button,
 } from "../styles/components"
 import {Seo, Stars} from "./"
+import { CartContext } from "../context"
 
-export const ProductDetail = ({ unit_amount, product: { name, metadata } }) => {
+export const ProductDetail = ({ id, unit_amount, product: { name, metadata } }) => {
+  const { addToCart } = useContext(CartContext)
   const price = priceFormat(unit_amount ?? 0)
   const [size, setSize] = useState(2)
-  const [qty, setQty] = useState(1)
+  const [quantity, setQty] = useState(1)
+
+  const handleSubmit = () => {
+    addToCart({ id, name, unit_amount, size, quantity, metadata })
+  }
+
   return (
     <StyledProductDetail>
       <Seo title={name} />
@@ -38,12 +45,12 @@ export const ProductDetail = ({ unit_amount, product: { name, metadata } }) => {
           </>
         )}
         <p>Qty: </p>
-        <QtySelect selected={qty}>
-          <QtyButton onClick={() => (qty > 1 ? setQty((q) => q-1) : null)}>-</QtyButton>
-          <input type="text" value={qty} disabled />
+        <QtySelect selected={quantity}>
+          <QtyButton onClick={() => (quantity > 1 ? setQty((q) => q-1) : null)}>-</QtyButton>
+          <input type="text" value={quantity} disabled />
           <QtyButton onClick={() => setQty((q) => q+1)}>+</QtyButton>
         </QtySelect>
-        <Button> Add to Cart</Button>
+        <Button onClick={handleSubmit}> Add to Cart</Button>
       </div>
     </StyledProductDetail>
   )
