@@ -29,8 +29,8 @@ const CartDetails = () => {
     const { error } = await stripe?.redirectToCheckout({
       lineItems: items,
       mode: "payment",
-      successUrl: process.env.SUCCESS_REDIRECT,
-      cancelUrl: process.env.CANCEL_REDIRECT,
+      successUrl: `https://gatsby-platzi-swag-00001.netlify.app/thanks/`,
+      cancelUrl: `https://gatsby-platzi-swag-00001.netlify.app/cancelled/`,
     })
 
     if (error) {
